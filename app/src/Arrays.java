@@ -15,6 +15,6 @@ public class Arrays {
             {4, 5, 6},
             {7, 8, 9}
     };
-    System.out.println(matriz2[1][2]);
+    System.out.println(matriz[1][1]);
 }
     }
