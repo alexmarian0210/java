@@ -15,80 +15,77 @@ public class heroi {
         this.vidaAtual = vida;
         this.ataque = ataque;
         this.defesa = defesa;
-        this.pocoes = 3; // O herói começa com 3 poções
-        this.xp = 0; // O herói começa com 0 XP
+        this.pocoes = 3;
+        this.xp = 0; 
     }
-
-    public String getNome() {return nome;}
-    public int getVidaAtual() {return vidaAtual;}
-    public int getAtaque() {return ataque;}
-    public int getDefesa() {return defesa;}
-    public int getPocoes() {return pocoes;}
-    public int getXp() {return xp;}
-
     public int atacar() {
-        int dano = (int) (Math.random() * 10) - 5;
-        return ataque + dano; // Dano aleatório entre 1 e o valor de ataque
+        int variacao = (int)(Math.random() * 10) - 5;
+        return ataque + variacao; 
     }
 
     public void receberDano(int dano) {
         int danoFinal = dano - defesa;
-        if (danoFinal < 1) {
-            danoFinal = 1; // O dano não pode ser negativo
+        if (danoFinal < 0) {
+            danoFinal = 0; 
         }
         vidaAtual -= danoFinal;
         if (vidaAtual < 0) {
-            vidaAtual = 0;// A vida não pode ser negativa
+            vidaAtual = 0; 
+        }
+        System.out.println(nome + " recebeu " + danoFinal + " de dano. Vida atual: " + vidaAtual);    
     }
-      System.out.println(nome + " recebeu " + danoFinal + " de dano. Vida atual: " + vidaAtual);z
-       
-    }
-
-    public void usarPocao() {
+    public boolean usarPocao() {
         if (pocoes > 0) {
-            vidaAtual += 20; // Cada poção cura 20 pontos de vida
+            vidaAtual += 10; 
             if (vidaAtual > vidaMaxima) {
-                vidaAtual = vidaMaxima; // A vida não pode exceder o máximo
+                vidaAtual = vidaMaxima;
+                return true; 
             }
+
+            
             pocoes--;
             System.out.println(nome + " usou uma poção. Vida atual: " + vidaAtual + ". Poções restantes: " + pocoes);
+            return true;
         } else {
             System.out.println(nome + " não tem poções restantes!");
-        }
-    }
 
-    int cura = 30;
-    
-    public void curar() {
+  
+            return false;
+
+            int cura = 30;
+        }
+
+
+               public void curar(){
         vidaAtual += cura;
         if (vidaAtual > vidaMaxima) {
             vidaAtual = vidaMaxima;
-
         }
         pocoes--;
         System.out.println(nome + " usou uma poção. Vida atual: " + vidaAtual + ". Poções restantes: " + pocoes);
-            
-        }
-
-        public void ganharXp(int xpGanho) {
-            xp += xpGanho;
-            System.out.println(nome + " ganhou " + xpGanho + " XP. Total de XP: " + xp);
     }
     
+        }
+    }
+
+  
+
+ 
+    public void ganharXP(int quantitade) {
+        xp += quantitade;
+        System.out.println(nome + " ganhou " + quantitade + " XP. Total de XP: " + xp);
+    }
 
     public boolean estaVivo() {
         return vidaAtual > 0;
     }
 
     public void exibirStatus() {
-        System.out.println("Nome: " + nome);
-        System.out.println("Vida Atual: " + vidaAtual + "/" + vidaMaxima);
-        System.out.println("Ataque: " + ataque);
-        System.out.println("Defesa: " + defesa);
-        System.out.println("Poções: " + pocoes);
-        System.out.println("XP: " + xp);
-
+        System.out.println("\nNome: " + nome);
+        System.out.println("\nVida: " + vidaAtual + "/" + vidaMaxima);
+        System.out.println("\nAtaque: " + ataque);
+        System.out.println("\nDefesa: " + defesa);
+        System.out.println("\nPoções: " + pocoes);
+        System.out.println("\nXP: " + xp);
     }
-    
 }
-
